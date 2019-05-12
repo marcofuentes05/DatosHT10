@@ -8,6 +8,10 @@ class Paciente(GraphObject):
 	nombre = Property()
 	telefono = Property()
 
+	toma = Related("Medicina","Toma")
+	visita = Related ("Doctor","Visita")
+	conoce = Related("Paciente","conoce")
+
 class Doctor(GraphObject):
 	__primarykey__ = "nombre"
 
@@ -15,6 +19,9 @@ class Doctor(GraphObject):
 	colegiado = Property()
 	especialidad = Property()
 	telefono = Property()
+
+	conoce = Related("Doctor","conoce")
+	prescribe = Related ("Medicina","Prescribe")
 
 class Medicina (GraphObject):
 	nombre = Property()
