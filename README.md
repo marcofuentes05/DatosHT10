@@ -1,6 +1,6 @@
 # Hoja de Trabajo 10
 
-La tarea fue hecha usando Python 3 y la libreria (Py2Neo)[https://py2neo.org/v3]. Para installarlo se puede usar el comando
+La tarea fue hecha usando Python 3 y la libreria [Py2Neo](https://py2neo.org/v3). Para installarlo se puede usar el comando
 
 ```pip install py2neo``` 
 
