@@ -56,5 +56,8 @@ CREATE (p:Paciente {nombre:"Mary", telefono: "4789"})-[:Visita {fecha: "01092019
 CREATE (p:Paciente {nombre:"Kevin", telefono: "0087"})-[:Visita {fecha: "01102019"}]->(d:Doctor {nombre: "Fernando", colegiado: "3543", especialidad: "Cirugia General", telefono: "7459"})-[:Prescribe]->(m:Medicina {nombre: "Calcio", desdeFecha: "01102019", hastaFecha: "01112019", dosis: "1 en ayunas"})<-[:Toma]-(p)
 
 
-
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Mary" AND b.nombre = "Kevin"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
 
