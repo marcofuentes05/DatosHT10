@@ -43,15 +43,24 @@ RETURN type(c)
 
 CREATE (p:Paciente {nombre:"Ailyn", telefono: "3869"})-[:Visita {fecha: "01072019"}]->(d:Doctor {nombre: "Adrian", colegiado: "9076", especialidad: "Ginecologo", telefono: "3814"})-[:Prescribe]->(m:Medicina {nombre: "Amoxicilina", desdeFecha: "01072019", hastaFecha: "10082019", dosis: "1 c/24 horas"})<-[:Toma]-(p)
 
-
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Fernando" AND b.nombre = "Victor"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
 
 CREATE (p:Paciente {nombre:"Rita", telefono: "2702"})-[:Visita {fecha: "01082019"}]->(d:Doctor {nombre: "Maria", colegiado: "1256", especialidad: "Anestesiologo", telefono: "9805"})-[:Prescribe]->(m:Medicina {nombre: "Metiom", desdeFecha: "01082019", hastaFecha: "01092019", dosis: "1 en ayunas"})<-[:Toma]-(p)
 
-
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Jose" AND b.nombre = "Alejandro"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
 
 CREATE (p:Paciente {nombre:"Mary", telefono: "4789"})-[:Visita {fecha: "01092019"}]->(d:Doctor {nombre: "Fatima", colegiado: "3873", especialidad: "Anestisiologo", telefono: "7218"})-[:Prescribe]->(m:Medicina {nombre: "Sulcrafato", desdeFecha: "01092019", hastaFecha: "05092019", dosis: "1 en ayunas"})<-[:Toma]-(p)
 
-
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Jose" AND b.nombre = "Pamela"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
 
 CREATE (p:Paciente {nombre:"Kevin", telefono: "0087"})-[:Visita {fecha: "01102019"}]->(d:Doctor {nombre: "Fernando", colegiado: "3543", especialidad: "Cirugia General", telefono: "7459"})-[:Prescribe]->(m:Medicina {nombre: "Calcio", desdeFecha: "01102019", hastaFecha: "01112019", dosis: "1 en ayunas"})<-[:Toma]-(p)
 
@@ -60,4 +69,3 @@ MATCH (a:Paciente), (b:Paciente)
 WHERE a.nombre = "Mary" AND b.nombre = "Kevin"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
-
