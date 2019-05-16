@@ -4,7 +4,7 @@
 from py2neo import *
 from clases import *
 import pprint
-graph = Graph (password = "laboratorio")
+graph = Graph (password = "patos")
 
 def agregarRelacion (n1, n2,fecha,medicina,desdeCuando,paraCuando,dosis):
 	d = graph.run("MATCH (n:Paciente) WHERE n.nombre = '"+n1+"' RETURN n").data()

@@ -1,71 +1,232 @@
 CREATE (p:Paciente {nombre:"Ana", telefono: "8165"})-[:Visita {fecha: "01012019"}]->(d:Doctor {nombre: "Jessica", colegiado: "3923", especialidad: "Pediatra", telefono: "7209"})-[:Prescribe]->(m:Medicina {nombre: "Acetaminofen", desdeFecha: "01012019", hastaFecha: "05012019", dosis: "1 c/8 horas"})<-[:Toma]-(p)
 
+CREATE (p:Paciente {nombre:"Sergio", telefono: "7295"})-[:Visita {fecha: "01022019"}]->(d:Doctor {nombre: "Jose", colegiado: "3567", especialidad: "Internista", telefono: "2587"})-[:Prescribe]->(m:Medicina {nombre: "Apirina", desdeFecha: "01022019", hastaFecha: "05022019", dosis: "1 c/8 horas"})<-[:Toma]-(p)
+
+CREATE (p:Paciente {nombre:"Diana", telefono: "9131"})-[:Visita {fecha: "01032019"}]->(d:Doctor {nombre: "Pamela", colegiado: "1205", especialidad: "Anestesiologo", telefono: "4141"})-[:Prescribe]->(m:Medicina {nombre: "Omeprazol", desdeFecha: "01032019", hastaFecha: "05032019", dosis: "1 c/12 horas"})<-[:Toma]-(p)
+
+CREATE (p:Paciente {nombre:"Luis", telefono: "7730"})-[:Visita {fecha: "01042019"}]->(d:Doctor {nombre: "Victor", colegiado: "2802", especialidad: "Cirugia general", telefono: "8202"})-[:Prescribe]->(m:Medicina {nombre: "Ramipril", desdeFecha: "01042019", hastaFecha: "05042019", dosis: "1 c/24 horas"})<-[:Toma]-(p)
+
+CREATE (p:Paciente {nombre:"Hector", telefono: "4649"})-[:Visita {fecha: "01052019"}]->(d:Doctor {nombre: "Arturo", colegiado: "9765", especialidad: "Cirugia general", telefono: "8733"})-[:Prescribe]->(m:Medicina {nombre: "Paracetamol", desdeFecha: "01052019", hastaFecha: "05052019", dosis: "1 c/4 horas"})<-[:Toma]-(p)
+
+CREATE (p:Paciente {nombre:"Guillermo", telefono: "5231"})-[:Visita {fecha: "01062019"}]->(d:Doctor {nombre: "Alejandro", colegiado: "9102", especialidad: "Ginecologo", telefono: "1119"})-[:Prescribe]->(m:Medicina {nombre: "Lanzoprazol", desdeFecha: "01062019", hastaFecha: "10062019", dosis: "1 en ayunas"})<-[:Toma]-(p)
+
+CREATE (p:Paciente {nombre:"Ailyn", telefono: "3869"})-[:Visita {fecha: "01072019"}]->(d:Doctor {nombre: "Adrian", colegiado: "9076", especialidad: "Ginecologo", telefono: "3814"})-[:Prescribe]->(m:Medicina {nombre: "Amoxicilina", desdeFecha: "01072019", hastaFecha: "10082019", dosis: "1 c/24 horas"})<-[:Toma]-(p)
+
+CREATE (p:Paciente {nombre:"Rita", telefono: "2702"})-[:Visita {fecha: "01082019"}]->(d:Doctor {nombre: "Maria", colegiado: "1256", especialidad: "Anestesiologo", telefono: "9805"})-[:Prescribe]->(m:Medicina {nombre: "Metiom", desdeFecha: "01082019", hastaFecha: "01092019", dosis: "1 en ayunas"})<-[:Toma]-(p)
+
+CREATE (p:Paciente {nombre:"Mary", telefono: "4789"})-[:Visita {fecha: "01092019"}]->(d:Doctor {nombre: "Fatima", colegiado: "3873", especialidad: "Anestisiologo", telefono: "7218"})-[:Prescribe]->(m:Medicina {nombre: "Sulcrafato", desdeFecha: "01092019", hastaFecha: "05092019", dosis: "1 en ayunas"})<-[:Toma]-(p)
+
+CREATE (p:Paciente {nombre:"Kevin", telefono: "0087"})-[:Visita {fecha: "01102019"}]->(d:Doctor {nombre: "Fernando", colegiado: "3543", especialidad: "Cirugia General", telefono: "7459"})-[:Prescribe]->(m:Medicina {nombre: "Calcio", desdeFecha: "01102019", hastaFecha: "01112019", dosis: "1 en ayunas"})<-[:Toma]-(p)
+
+
+
+
+
+
 MATCH (a:Paciente), (b:Paciente)
 WHERE a.nombre = "Ana" AND b.nombre = "Kevin"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
 
-CREATE (p:Paciente {nombre:"Sergio", telefono: "7295"})-[:Visita {fecha: "01022019"}]->(d:Doctor {nombre: "Jose", colegiado: "3567", especialidad: "Internista", telefono: "2587"})-[:Prescribe]->(m:Medicina {nombre: "Apirina", desdeFecha: "01022019", hastaFecha: "05022019", dosis: "1 c/8 horas"})<-[:Toma]-(p)
-
 MATCH (a:Paciente), (b:Paciente)
-WHERE a.nombre = "Luis" AND b.nombre = "Diana"
+WHERE a.nombre = "Luis" AND b.nombre = "Rita"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
 
-CREATE (p:Paciente {nombre:"Diana", telefono: "9131"})-[:Visita {fecha: "01032019"}]->(d:Doctor {nombre: "Pamela", colegiado: "1205", especialidad: "Anestesiologo", telefono: "4141"})-[:Prescribe]->(m:Medicina {nombre: "Omeprazol", desdeFecha: "01032019", hastaFecha: "05032019", dosis: "1 c/12 horas"})<-[:Toma]-(p)
-
 MATCH (a:Paciente), (b:Paciente)
-WHERE a.nombre = "Sergio" AND b.nombre = "Hector"
+WHERE a.nombre = "Sergio" AND b.nombre = "Kevin"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
 
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Sergio" AND b.nombre = "Ana"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
 
-CREATE (p:Paciente {nombre:"Luis", telefono: "7730"})-[:Visita {fecha: "01042019"}]->(d:Doctor {nombre: "Victor", colegiado: "2802", especialidad: "Cirugia general", telefono: "8202"})-[:Prescribe]->(m:Medicina {nombre: "Ramipril", desdeFecha: "01042019", hastaFecha: "05042019", dosis: "1 c/24 horas"})<-[:Toma]-(p)
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Diana" AND b.nombre = "Sergio"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
 
 MATCH (a:Paciente), (b:Paciente)
 WHERE a.nombre = "Ailyn" AND b.nombre = "Luis"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
 
-CREATE (p:Paciente {nombre:"Hector", telefono: "4649"})-[:Visita {fecha: "01052019"}]->(d:Doctor {nombre: "Arturo", colegiado: "9765", especialidad: "Cirugia general", telefono: "8733"})-[:Prescribe]->(m:Medicina {nombre: "Paracetamol", desdeFecha: "01052019", hastaFecha: "05052019", dosis: "1 c/4 horas"})<-[:Toma]-(p)
-
 MATCH (a:Paciente), (b:Paciente)
 WHERE a.nombre = "Rita" AND b.nombre = "Mary"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
-
-CREATE (p:Paciente {nombre:"Guillermo", telefono: "5231"})-[:Visita {fecha: "01062019"}]->(d:Doctor {nombre: "Alejandro", colegiado: "9102", especialidad: "Ginecologo", telefono: "1119"})-[:Prescribe]->(m:Medicina {nombre: "Lanzoprazol", desdeFecha: "01062019", hastaFecha: "10062019", dosis: "1 en ayunas"})<-[:Toma]-(p)
 
 MATCH (a:Paciente), (b:Paciente)
 WHERE a.nombre = "Rita" AND b.nombre = "Guillermo"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
 
-CREATE (p:Paciente {nombre:"Ailyn", telefono: "3869"})-[:Visita {fecha: "01072019"}]->(d:Doctor {nombre: "Adrian", colegiado: "9076", especialidad: "Ginecologo", telefono: "3814"})-[:Prescribe]->(m:Medicina {nombre: "Amoxicilina", desdeFecha: "01072019", hastaFecha: "10082019", dosis: "1 c/24 horas"})<-[:Toma]-(p)
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Ailyn" AND b.nombre = "Guillermo"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Hector" AND b.nombre = "Ana"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Hector" AND b.nombre = "Luis"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Ana" AND b.nombre = "Mary"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Luis" AND b.nombre = "Hector"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Kevin" AND b.nombre = "Hector"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Kevin" AND b.nombre = "Diana"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Mary" AND b.nombre = "Sergio"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Mary" AND b.nombre = "Ailyn"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Guillermo" AND b.nombre = "Rita"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Guillermo" AND b.nombre = "Diana"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+MATCH (a:Paciente), (b:Paciente)
+WHERE a.nombre = "Diana" AND b.nombre = "Ailyn"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+
+
+
+
+
+
+
+
 
 MATCH (a:Doctor), (b:Doctor)
 WHERE a.nombre = "Fernando" AND b.nombre = "Victor"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
 
-CREATE (p:Paciente {nombre:"Rita", telefono: "2702"})-[:Visita {fecha: "01082019"}]->(d:Doctor {nombre: "Maria", colegiado: "1256", especialidad: "Anestesiologo", telefono: "9805"})-[:Prescribe]->(m:Medicina {nombre: "Metiom", desdeFecha: "01082019", hastaFecha: "01092019", dosis: "1 en ayunas"})<-[:Toma]-(p)
-
 MATCH (a:Doctor), (b:Doctor)
 WHERE a.nombre = "Jose" AND b.nombre = "Alejandro"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
-
-CREATE (p:Paciente {nombre:"Mary", telefono: "4789"})-[:Visita {fecha: "01092019"}]->(d:Doctor {nombre: "Fatima", colegiado: "3873", especialidad: "Anestisiologo", telefono: "7218"})-[:Prescribe]->(m:Medicina {nombre: "Sulcrafato", desdeFecha: "01092019", hastaFecha: "05092019", dosis: "1 en ayunas"})<-[:Toma]-(p)
 
 MATCH (a:Doctor), (b:Doctor)
 WHERE a.nombre = "Jose" AND b.nombre = "Pamela"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
 
-CREATE (p:Paciente {nombre:"Kevin", telefono: "0087"})-[:Visita {fecha: "01102019"}]->(d:Doctor {nombre: "Fernando", colegiado: "3543", especialidad: "Cirugia General", telefono: "7459"})-[:Prescribe]->(m:Medicina {nombre: "Calcio", desdeFecha: "01102019", hastaFecha: "01112019", dosis: "1 en ayunas"})<-[:Toma]-(p)
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Arturo" AND b.nombre = "Fatima"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
 
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Alejandro" AND b.nombre = "Jessica"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
 
-MATCH (a:Paciente), (b:Paciente)
-WHERE a.nombre = "Mary" AND b.nombre = "Kevin"
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Fernando" AND b.nombre = "Adrian"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Victor" AND b.nombre = "Jose"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Pamela" AND b.nombre = "Maria"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Alejandro" AND b.nombre = "Arturo"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Fatima" AND b.nombre = "Adrian"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Jessica" AND b.nombre = "Maria"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Fatima" AND b.nombre = "Jose"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Maria" AND b.nombre = "Fatima"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Victor" AND b.nombre = "Pamela"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Maria" AND b.nombre = "Alejandro"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Arturo" AND b.nombre = "Fernando"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Jessica" AND b.nombre = "Fernando"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Adrian" AND b.nombre = "Arturo"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Adrian" AND b.nombre = "Jessica"
+CREATE (a)-[c:conoce]->(b)
+RETURN type(c)
+
+MATCH (a:Doctor), (b:Doctor)
+WHERE a.nombre = "Pamela" AND b.nombre = "Victor"
 CREATE (a)-[c:conoce]->(b)
 RETURN type(c)
