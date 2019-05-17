@@ -6,6 +6,7 @@ from clases import *
 import pprint
 graph = Graph (password = "laboratorio")
 
+#La funcion agrega relaciones entre paciente y doctor (visita), el doctor y la prescripcion de la medicina y el paciente que toma la medicina
 def agregarRelacion (n1, n2,fecha,medicina,desdeCuando,paraCuando,dosis):
 	d = graph.run("MATCH (n:Paciente) WHERE n.nombre = '"+n1+"' RETURN n").data()
 	if (len(d)>0):	
@@ -30,6 +31,7 @@ def agregarRelacion (n1, n2,fecha,medicina,desdeCuando,paraCuando,dosis):
 		print("No hay paciente con ese nombre")
 		return False
 
+#Esta funcion creo que las relaciones entre pacientes y entre docotores que se conocen.
 def agregarRelacionX (n1, n2,tipo):
 	#tipo es True para pacientes y False para doctores
 	if (tipo == True):
@@ -72,6 +74,7 @@ cond = True
 
 while (cond):
 	#print (menu)
+	#Se piden los atributos del doctor y se crea el nodo
 	respuesta = input (menu)
 	if (respuesta == "1"):
 		d = Doctor()
@@ -85,6 +88,8 @@ while (cond):
 		d.telefono = telefono
 		d.especialidad = especialidad
 		graph.push(d)
+
+	#Se piden los atributos del paciente y se crea el nodo
 	elif (respuesta == "2"):
 		p = Paciente()
 
@@ -94,6 +99,8 @@ while (cond):
 		p.nombre = nombre
 		p.telefono = telefono
 		graph.push(p)
+
+	#Se piden los datos de la visita y se crea la visita, prescripcion y la toma de medicina
 	elif (respuesta == "3"):
 		n1 = input("Ingresa el nombre del paciente: ")
 		n2 = input("Ingresa el nombre del doctor: ")
@@ -106,21 +113,27 @@ while (cond):
 		if (agregarRelacion(n1,n2,fecha,medicina,desdeCuando,paraCuando,dosis) == False):
 			print ("Hay algo mal, intentalo de nuevo con datos correctos....")
 
+	#Se pide la especialidad que se quiere buscar entre la base de datos y se encuentran todos los especialistas
 	elif (respuesta == "4"):
 		especialidad = input ("Ingresa la especialidad que buscas: ")
 		d = graph.run("MATCH (n:Doctor) WHERE n.especialidad = '"+especialidad+"' return n").data()
 		pp = pprint.PrettyPrinter(indent=4)
 		pp.pprint(d)
+
+	#Se piden los nombre de los pacientes que se conocen
 	elif (respuesta == "5"):
 		n1 = input ("Ingresa el nombre del primer paciente")
 		n2 = input("Ingresa el nombre del segundo paciente")
 		if (agregarRelacionX(n1,n2,True)==False):
 			print ("Hay algo mal, intentalo de nuevo con datos correctos....")
+
+	#Se piden los nombres de los doctores que se conocen
 	elif (respuesta == "6"):
 		n1 = input ("Ingresa el nombre del primer doctor")
 		n2 = input("Ingresa el nombre del segundo doctor")
 		if (agregarRelacionX(n1,n2,False)==False):
 			print ("Hay algo mal, intentalo de nuevo con datos correctos....")
+	#Segun la persona que se ingresa y la esepecialidad se le recomiendo un doctor
 	elif(respuesta == "7"):
 		resultado = ""
 		nombreP = input ("¿Quien eres (Ingresa tu nombre de la BD)?\n")
@@ -146,6 +159,8 @@ while (cond):
 			print ("No hay opciones, comienza a rezar :(")	
 		else:
 			print (resultado)
+
+	#Se busca un doctor para poder atender en base al doctor ya visitado por el paciente
 	elif (respuesta == "8"):
 		resultado = ""
 		nombreD = input("Bienvenido doctor, ¿Cuál es su nombre (de la base de datos)?\n")
